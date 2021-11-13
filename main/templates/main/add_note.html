@@ -1,0 +1,21 @@
+{% extends 'main/index.html' %}
+{% load static %}
+
+{% block title %}
+    DataBase | Add note
+{% endblock %}
+
+{% block main %}
+<form action='' id='main' method='post'>
+    {% csrf_token %}
+    <h1>Add Note</h1>
+    {{form.as_p}}
+    <input type='submit' value='SUBMIT'>
+</form>
+<a href="." id='red_btn'>Back</a>
+{% endblock %}
+
+{% block import %}
+<link rel='stylesheet' href="{% static 'css/add.css' %}">
+{% endblock %}
+

@@ -1,0 +1,49 @@
+{% extends 'main/index.html' %}
+{% load static %}
+
+{% block title %}
+    People
+{% endblock %}
+
+{% block main %}
+<a href='..' id='red_btn'>Back to dashboard</a>
+
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Birthday</th>
+        <th>E-mail</th>
+        <th>Number</th>
+        <th>Instagram</th>
+        <th>Notes</th>
+    </tr>
+    {% for person in people %}
+        <tr>
+            <td>{{person.name}}</td>
+            <td>{{person.birthday}}</td>
+            <td>{{person.email}}</td>
+            <td>{{person.number}}</td>
+            {% if person.instagram %}
+                <td>
+                    <a href="https://instagram.com/{{person.instagram}}" target='_blank'>@{{person.instagram}}</a>
+                </td>
+            {% else %}
+                <td></td>
+            {% endif %}
+            <td>
+                <a href="{{person.id}}" id='see_more'>See more</a>
+            </td>
+        </tr>
+    {% endfor %}
+</table>
+
+<p>DataBase has {{people.count}} members.</p>
+
+
+<a href='add/' id='red_btn'>Add person to DataBase</a>
+{% endblock %}
+
+{% block import %}
+<link rel="stylesheet" href="{% static "css/people.css" %}">
+{% endblock%}
+

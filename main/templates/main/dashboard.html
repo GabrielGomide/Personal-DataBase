@@ -1,0 +1,26 @@
+{% extends 'main/index.html' %}
+{% load static %}
+
+{% block title %}
+Dashboard
+{% endblock %}
+
+{% block  import %}
+<link rel='stylesheet' href="{% static 'css/dashboard.css' %}">
+{% endblock %}
+
+{% block main %}
+{% if names|length > 0%}
+    <h1>Birthdays in the next 30 days</h1>
+    <ul>
+        {% for person in names %}
+            <li>{{person}}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
+<a href='notes' id='red_btn'>Notes</a>
+<a href='people' id='red_btn'>People DataBase</a>
+<a href='people/add' id='red_btn'>Add people to DataBase</a>
+{% endblock %}
+

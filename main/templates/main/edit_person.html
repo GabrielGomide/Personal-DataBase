@@ -1,0 +1,26 @@
+{% extends 'main/index.html' %}
+{% load static %}
+
+{% block title %}
+    DataBase | {{person.name}}
+{% endblock %}
+
+{% block main %}
+{% if exist %}
+    <form action='' id='main' method='post'>
+        {% csrf_token %}
+        {{form.as_p}}
+        <input type='submit' value='SUBMIT'>
+    </form>
+{% else %}
+    <h1>Person does not exist in DataBase</h1>
+{% endif %}
+
+<a href='../../people' id='red_btn'>Back</a>
+{% endblock %}
+
+{% block import %}
+<link rel='stylesheet' href="{% static 'css/person.css' %}">
+<link rel='stylesheet' href="{% static 'css/add.css' %}">
+{% endblock %}
+

@@ -1,0 +1,22 @@
+{% extends 'main/index.html' %}
+{% load static %}
+
+{% block title %}
+    DataBase | Notes
+{% endblock %}
+
+{% block main %}
+    {% if not exist %}
+        <h1>Note doest not exist</h1>
+    {% else %}
+        <h1>{{note.title}}</h1>
+        <p>{{note.notes}}</p>
+    {% endif %}
+    <a href='.' id='red_btn'>Notes</a>
+    <a href="{{note.id}}/edit" id='red_btn'>Edit</a>
+{% endblock %}
+
+{% block import %}
+<link rel='stylesheet' href="{% static 'css/notes.css' %}">
+{% endblock %}
+

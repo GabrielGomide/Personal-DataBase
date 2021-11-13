@@ -1,0 +1,27 @@
+{% extends 'main/index.html' %}
+{% load static %}
+
+{% block title %}
+    DataBase | Notes
+{% endblock %}
+
+{% block main %}
+    <h1>Notes</h1>
+    <div id='main'>
+        {% if notes|length == 0 %}
+            <p>There are no notes</p>
+        {% endif %}
+        {% for note in notes %}
+            <div id='note'>
+                <h1>{{note.title}}</h1>
+                <a href="{{note.id}}" id='see_more'>See More</a>
+            </div>
+        {% endfor %}
+        <a href='add' id='red_btn'>Add note</a>
+        <a href='..' id='red_btn'>Back</a>
+    </div>
+{% endblock %}
+
+{% block import %}
+<link rel='stylesheet' href="{% static 'css/notes.css' %}">
+{% endblock %}

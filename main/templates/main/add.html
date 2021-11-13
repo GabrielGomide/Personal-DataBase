@@ -1,0 +1,22 @@
+{% extends 'main/index.html' %}
+{% load static %}
+
+{% block title %}
+    Add person to DataBase
+{% endblock %}
+
+{% block main %}
+<a href='..' id='red_btn'>Back</a>
+
+<form action='' id='main' method='post'>
+    {% csrf_token %}
+    <h1>Add person to DataBase</h1>
+    {{form.as_p}}
+    <input type='submit' value='SUBMIT'>
+</form>
+{% endblock %}
+
+{% block import %}
+<link rel="stylesheet" href="{% static "css/add.css" %}">
+{% endblock%}
+

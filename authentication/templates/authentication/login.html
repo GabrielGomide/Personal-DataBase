@@ -1,0 +1,22 @@
+{% extends 'authentication/index.html' %}
+{% load static %}
+
+{% block title %}
+    Personal DataBase | Login
+{% endblock %}
+
+{% block main %}
+<div id="main">
+    <h1>Login to DB</h1>
+    <form action='' method='post'>
+        {% csrf_token %}
+        {{form}}
+        <input type='submit'>
+    </form>
+</div>
+{% endblock %}
+
+{% block import %}
+<link rel="stylesheet" href="{% static "css/login.css" %}">
+{% endblock%}
+

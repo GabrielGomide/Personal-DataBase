@@ -1,0 +1,42 @@
+{% extends 'main/index.html' %}
+{% load static %}
+
+{% block title %}
+    DataBase | {{person.name}}
+{% endblock %}
+
+{% block main %}
+{% if exist %}
+    <h1>{{person.name}}</h1>
+
+    {% if person.birthday %}
+    <p>Birthday: {{person.birthday}}</p>
+    {% endif %}
+
+    {% if person.email %}
+    <p>E-mail: {{person.email}}</p>
+    {% endif %}
+
+    {% if person.number %}
+    <p>Phone number: {{person.number}}</p>
+    {% endif %}
+
+    {% if person.instagram %}
+    <p>Instagram: <a href="https://instagram.com/{{person.instagram}}" target='_blank'>@{{person.instagram}}</a></p>
+    {% endif %}
+
+    {% if person.notes %}
+    <p>Notes: {{person.notes}}</p>
+    {% endif %}
+    <a href="{{person.id}}/edit" id='red_btn'>Edit</a>
+{% else %}
+    <h1>Person does not exist in DataBase</h1>
+{% endif %}
+
+<a href='../people' id='red_btn'>Back</a>
+{% endblock %}
+
+{% block import %}
+<link rel='stylesheet' href="{% static 'css/person.css' %}">
+{% endblock %}
+
