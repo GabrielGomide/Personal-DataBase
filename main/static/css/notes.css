@@ -12,6 +12,7 @@ html {
 
 #note {
     border: 3px solid white;
+    white-space: pre-line;
     margin: 1%;
     padding: 1%;
 }

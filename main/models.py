@@ -12,7 +12,16 @@ class People(models.Model):
     def __str__(self):
         return self.name
 
+    def as_list(self):
+        return self.notes.split('\n')
+
 class Note(models.Model):
     title = models.CharField(max_length=200)
     notes = models.CharField(max_length=10000)
+
+    def __str__(self):
+        return self.title
+
+    def as_list(self):
+        return self.notes.split('\n')
 

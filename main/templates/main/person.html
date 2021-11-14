@@ -26,7 +26,15 @@
     {% endif %}
 
     {% if person.notes %}
-    <p>Notes: {{person.notes}}</p>
+
+    <p>
+    Notes:
+    {% for line in person.as_list %}
+        {{line}}
+        <br>
+    {% endfor %}
+    </p>
+
     {% endif %}
     <a href="{{person.id}}/edit" id='red_btn'>Edit</a>
 {% else %}

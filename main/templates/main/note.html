@@ -10,7 +10,11 @@
         <h1>Note doest not exist</h1>
     {% else %}
         <h1>{{note.title}}</h1>
-        <p>{{note.notes}}</p>
+        {% for line in note.as_list %}
+            {{line}}
+            <br>
+        {% endfor %}
+        <br>
     {% endif %}
     <a href='.' id='red_btn'>Notes</a>
     <a href="{{note.id}}/edit" id='red_btn'>Edit</a>
