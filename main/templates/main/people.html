@@ -20,7 +20,11 @@
     {% for person in people %}
         <tr>
             <td>{{person.name}}</td>
-            <td>{{person.birthday}}</td>
+            {% if person.birthday %}
+                <td>{{person.birthday}}</td>
+            {% else %}
+                <td></td>
+            {% endif %}
             <td>{{person.email}}</td>
             <td>{{person.number}}</td>
             {% if person.instagram %}

@@ -10,6 +10,7 @@
         <h1>Note doest not exist</h1>
     {% else %}
         <h1>{{note.title}}</h1>
+        <p>Created: {{note.date}}</p>
         {% for line in note.as_list %}
             {{line}}
             <br>
