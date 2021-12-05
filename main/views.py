@@ -16,11 +16,12 @@ def dashboard(request):
     people = People.objects.all()
 
     for person in people:
-        person_birthday_this_year = datetime(datetime.today().year, person.birthday.month, person.birthday.day)
-        today = datetime.today()
-        if today < person_birthday_this_year:
-            if today + timedelta(days=30) > person_birthday_this_year:
-                names.append(f"{person.name} ({person.birthday.strftime('%B %d, %Y')})")
+        if person.birthday:
+            person_birthday_this_year = datetime(datetime.today().year, person.birthday.month, person.birthday.day)
+            today = datetime.today()
+            if today < person_birthday_this_year:
+                if today + timedelta(days=30) > person_birthday_this_year:
+                    names.append(f"{person.name} ({person.birthday.strftime('%B %d, %Y')})")
 
     context = {'names': names}
 
