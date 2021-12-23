@@ -8,15 +8,31 @@
 {% block main %}
     <h1>Notes</h1>
     <div id='main'>
-        {% if notes|length == 0 %}
+        {% if folders|length == 0 and notes|length == 0 %}
             <p>There are no notes</p>
+        {% else %}
+            <h2>{{ notes|length }} files</h2>
         {% endif %}
-        {% for note in notes %}
-            <div id='note'>
-                <h1>{{note.title}}</h1>
-                <a href="{{note.id}}" id='see_more'>See More</a>
+
+        {% for folder in folders %}
+            <div id='folder'>
+                <h1>{{folder.title}}</h1>
+                <a href="../folders/{{folder.id}}" id='see_more'>Open folder</a>
+                <a href="../folders/edit/{{folder.id}}" id='see_more'>Edit folder</a>
             </div>
         {% endfor %}
+
+        {% for note in notes %}
+            {% if note.folder == null %}
+                <div id='note'>
+                    <h1>{{note.title}}</h1>
+                    <a href="{{note.id}}" id='see_more'>See More</a>
+                </div>
+            {% endif %}
+        {% endfor %}
+
+        <br>
+
         <a href='add' id='red_btn'>Add note</a>
         <a href='..' id='red_btn'>Back</a>
     </div>

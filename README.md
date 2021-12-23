@@ -12,3 +12,7 @@ I have a people database that allows me to add people's name, birthday, e-mail, 
 
 I am able to create notes with a title and text.
 
+## Version 0.3
+
+Added folders to database.
+

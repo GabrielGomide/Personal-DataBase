@@ -1,0 +1,38 @@
+{% extends 'main/index.html' %}
+{% load static %}
+
+{% block title %}
+    DataBase | {{folder.title}}
+{% endblock %}
+
+{% block main %}
+    {% if not exist %}
+        <h1>Folder does not exist</h1>
+
+        <a href='../notes/add' id='red_btn'>Add note</a>
+        <a href='../notes' id='red_btn'>Back</a>
+    {% else %}
+        <h1>{{folder.title}}</h1>
+        <div id='main'>
+            {% if notes|length == 0 %}
+                <p>There are no notes</p>
+            {% endif %}
+
+            {% for note in notes %}
+                <div id='note'>
+                    <h1>{{note.title}}</h1>
+                    <a href="../notes/{{note.id}}" id='see_more'>See More</a>
+                </div>
+            {% endfor %}
+
+            <br>
+            
+            <a href='../notes/add' id='red_btn'>Add note</a>
+            <a href='../notes' id='red_btn'>Back</a>
+        </div>
+    {% endif %}
+{% endblock %}
+
+{% block import %}
+<link rel='stylesheet' href="{% static 'css/notes.css' %}">
+{% endblock %}

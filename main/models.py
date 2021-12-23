@@ -15,10 +15,17 @@ class People(models.Model):
     def as_list(self):
         return self.notes.split('\n')
 
+class Folder(models.Model):
+    title = models.CharField(max_length=200)
+
+    def __str__(self):
+        return self.title
+
 class Note(models.Model):
     title = models.CharField(max_length=200)
     notes = models.TextField()
     date = models.DateField(auto_now_add=True, null=True)
+    folder = models.ForeignKey(Folder, on_delete=models.CASCADE, null=True)
 
     def __str__(self):
         return self.title

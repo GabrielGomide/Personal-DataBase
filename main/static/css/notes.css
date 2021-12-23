@@ -17,6 +17,13 @@ html {
     padding: 1%;
 }
 
+#folder {
+    border: 3px solid green;
+    white-space: pre-line;
+    margin: 1%;
+    padding: 1%;
+}
+
 #see_more {
     color: white;
 }

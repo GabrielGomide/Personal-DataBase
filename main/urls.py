@@ -11,5 +11,7 @@ urlpatterns = [
     path('notes/add', add_note, name='add_note'),
     path('notes/<int:id>', note, name='note'),
     path('notes/<int:id>/edit', edit_note, name='edit_note'),
-    path('notes/<int:id>/delete', delete_note, name='delete_note')
+    path('notes/<int:id>/delete', delete_note, name='delete_note'),
+    path('folders/<int:id>', folder, name='folder'),
+    path('folders/edit/<int:id>', edit_folder, name='folder'),
 ]

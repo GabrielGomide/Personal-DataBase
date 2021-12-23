@@ -11,6 +11,10 @@
     {% else %}
         <h1>{{note.title}}</h1>
         <p>Created: {{note.date}}</p>
+        {% if note.folder %}
+            <p>Folder: {{folder.title}}</p>
+        {% endif %}
+
         {% for line in note.as_list %}
             {{line}}
             <br>

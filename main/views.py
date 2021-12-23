@@ -140,8 +140,9 @@ def notes(request):
     if not password:
         return redirect('login')
 
+    folders = Folder.objects.all()
     notes = Note.objects.all()
-    context = {'notes': notes}
+    context = {'folders': folders, 'notes': notes}
 
     return render(request, 'main/notes.html', context)
 
@@ -157,7 +158,19 @@ def add_note(request):
         if form.is_valid():
             title = form.cleaned_data['title']
             notes = form.cleaned_data['notes']
-            note = Note(title=title, notes=notes)
+            folder = form.cleaned_data['folder']
+
+            if folder:
+                if len(Folder.objects.filter(title=folder)):
+                    c_folder = Folder.objects.get(title=folder)
+                else:
+                    c_folder = Folder(title=folder)
+                    c_folder.save()
+
+                note = Note(title=title, notes=notes, folder=c_folder)
+            else:
+                note = Note(title=title, notes=notes)
+            
             note.save()
             return redirect('notes')
     else:
@@ -205,13 +218,27 @@ def edit_note(request, id):
         if form.is_valid():
             note.title = form.cleaned_data['title']
             note.notes = form.cleaned_data['notes']
+            folder = form.cleaned_data['folder']
+
+            if folder:
+                if len(Folder.objects.filter(title=folder)):
+                    c_folder = Folder.objects.get(title=folder)
+                else:
+                    c_folder = Folder(title=folder)
+                    c_folder.save()
+
+                note.folder = c_folder
+                
             note.save()
             return redirect(f'../{id}')
-    else:
+    elif note:
         form = AddNote()
 
         form.fields['title'].initial = note.title
         form.fields['notes'].initial = note.notes
+        form.fields['folder'].initial = note.folder
+    else:
+        form = None
 
     context = {'form': form, 'note': note, 'exist': exist}
 
@@ -231,3 +258,54 @@ def delete_note(request, id):
     note.delete()
 
     return redirect('notes')
+
+def folder(request, id):
+    password = request.COOKIES.get('password')
+
+    if not password:
+        return redirect('login')
+
+    folder = Folder.objects.filter(id=id)
+
+    if len(folder) == 1:
+        folder = Folder.objects.get(id=id)
+        exist = True
+        notes = folder.note_set.all()
+    else:
+        exist = False
+        notes = None
+
+    context = {'notes': notes, 'folder': folder, 'exist': exist}
+
+    return render(request, 'main/folder.html', context)
+
+def edit_folder(request, id):
+    password = request.COOKIES.get('password')
+
+    if not password:
+        return redirect('login')
+
+    folder = Folder.objects.filter(id=id)
+
+    if len(folder) == 1:
+        folder = Folder.objects.get(id=id)
+        exist = True
+    else:
+        exist = False
+
+    if request.method == 'POST':
+        form = EditFolder(request.POST)
+
+        if form.is_valid():
+            folder.title = form.cleaned_data['title']
+            folder.save()
+            return redirect(f'../{id}')
+    elif folder:
+        form = EditFolder()
+        form.fields['title'].initial = folder.title
+    else:
+        form = None
+
+    context = {'form': form, 'note': note, 'exist': exist}
+
+    return render(request, 'main/edit_folder.html', context)

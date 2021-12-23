@@ -2,23 +2,22 @@
 {% load static %}
 
 {% block title %}
-    DataBase | Edit note
+    DataBase | Edit folder
 {% endblock %}
 
 {% block main %}
     {% if not exist %}
-        <h1>Note does not exist</h1>
+        <h1>Folder does not exist</h1>
     {% else %}
         <form action='' id='main' method='post'>
             {% csrf_token %}
-            <h1>Edit Note</h1>
+            <h1>Edit Folder</h1>
             {{form.as_p}}
             <input type='submit' value='SUBMIT'>
         </form>
     {% endif %}
 
-    <a href="../{{note.id}}" id='red_btn'>Back</a>
-    <a href="./delete" id='red_btn'>Delete note</a>
+    <a href="../../notes/" id='red_btn'>Back</a>
 {% endblock %}
 
 {% block import %}
