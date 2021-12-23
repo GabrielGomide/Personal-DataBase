@@ -17,10 +17,15 @@ def dashboard(request):
 
     for person in people:
         if person.birthday:
-            person_birthday_this_year = datetime(datetime.today().year, person.birthday.month, person.birthday.day)
             today = datetime.today()
-            if today < person_birthday_this_year:
-                if today + timedelta(days=30) > person_birthday_this_year:
+
+            if person.birthday.month >= today.month:
+                person_birthday_this_year = datetime(today.year, person.birthday.month, person.birthday.day)
+            else:
+                person_birthday_this_year = datetime(today.year + 1, person.birthday.month, person.birthday.day)
+
+            if today - timedelta(hours=24) <= person_birthday_this_year:
+                if today + timedelta(days=30) >= person_birthday_this_year:
                     names.append(f"{person.name} ({person.birthday.strftime('%B %d, %Y')})")
 
     context = {'names': names}
