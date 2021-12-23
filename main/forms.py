@@ -12,4 +12,4 @@ class AddPeople(forms.Form):
 
 class AddNote(forms.Form):
     title = forms.CharField(max_length=200, widget=forms.TextInput(attrs={'placeholder': 'Title'}), label='')
-    notes = forms.CharField(max_length=10000, widget=forms.Textarea(attrs={'placeholder': 'Notes'}), label='')
+    notes = forms.CharField(widget=forms.Textarea(attrs={'placeholder': 'Notes'}), label='')

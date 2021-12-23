@@ -17,7 +17,7 @@ class People(models.Model):
 
 class Note(models.Model):
     title = models.CharField(max_length=200)
-    notes = models.CharField(max_length=10000)
+    notes = models.TextField()
     date = models.DateField(auto_now_add=True, null=True)
 
     def __str__(self):
