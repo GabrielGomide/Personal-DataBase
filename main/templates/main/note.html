@@ -12,7 +12,7 @@
         <h1>{{note.title}}</h1>
         <p>Created: {{note.date}}</p>
         {% if note.folder %}
-            <p>Folder: {{folder.title}}</p>
+            <p>Folder: {{note.folder.title}}</p>
         {% endif %}
 
         {% for line in note.as_list %}
