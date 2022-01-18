@@ -16,12 +16,20 @@
         {% endif %}
 
         {% for line in note.as_list %}
-            {{line}}
+            {% if line.0 == '#' %}
+                <b>{{line|slice:'1:'}}</b>
+            {% elif line.0 == '$' %}
+                <i>{{line|slice:'1:'}}</i>
+            {% elif line.0 == '%' %}
+                <u>{{line|slice:'1:'}}</u>
+            {% else %}
+                {{line}}
+            {% endif %}
             <br>
         {% endfor %}
         <br>
     {% endif %}
-    <a href='.' id='red_btn'>Notes</a>
+    <a href='javascript:history.back()' id='red_btn'>Back</a>
     <a href="{{note.id}}/edit" id='red_btn'>Edit</a>
 {% endblock %}
 
