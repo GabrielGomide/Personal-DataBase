@@ -306,6 +306,21 @@ def edit_folder(request, id):
     else:
         form = None
 
-    context = {'form': form, 'note': note, 'exist': exist}
+    context = {'form': form, 'folder': folder, 'exist': exist}
 
     return render(request, 'main/edit_folder.html', context)
+
+def delete_folder(request, id):
+    password = request.COOKIES.get('password')
+
+    if not password:
+        return redirect('login')
+
+    folder = Folder.objects.filter(id=id)
+
+    if len(folder) == 1:
+        folder = Folder.objects.get(id=id)
+
+    folder.delete()
+
+    return redirect('notes')

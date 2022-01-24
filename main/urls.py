@@ -14,4 +14,5 @@ urlpatterns = [
     path('notes/<int:id>/delete', delete_note, name='delete_note'),
     path('folders/<int:id>', folder, name='folder'),
     path('folders/edit/<int:id>', edit_folder, name='folder'),
+    path('folders/<int:id>/delete', delete_folder, name='delete_folder')
 ]

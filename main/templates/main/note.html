@@ -29,7 +29,12 @@
         {% endfor %}
         <br>
     {% endif %}
-    <a href='javascript:history.back()' id='red_btn'>Back</a>
+
+    {% if note.folder %}
+        <a href='../folders/{{note.folder.id}}' id='red_btn'>Back</a>
+    {% else %}
+        <a href='../notes' id='red_btn'>Back</a>
+    {% endif %}
     <a href="{{note.id}}/edit" id='red_btn'>Edit</a>
 {% endblock %}
 
